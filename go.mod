@@ -1,6 +1,7 @@
 module github.com/alexandremahdhaoui/ipxer
 
 go 1.23.5
+
 require (
 	github.com/coreos/butane v0.19.0
 	github.com/getkin/kin-openapi v0.131.0
