@@ -4,9 +4,9 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
-  name: assignments.ipxe.cloud.alexandre.mahdhaoui.com
+  name: assignments.ipxer.amahdha.com
 spec:
-  group: ipxe.cloud.alexandre.mahdhaoui.com
+  group: ipxer.amahdha.com
   names:
     kind: Assignment
     listKind: AssignmentList

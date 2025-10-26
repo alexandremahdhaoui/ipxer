@@ -1,6 +1,6 @@
 // Package v1alpha1 contains API Schema definitions for the v1alpha1 API group
 // +kubebuilder:object:generate=true
-// +groupName=ipxe.cloud.alexandre.mahdhaoui.com
+// +groupName=ipxer.amahdha.com
 package v1alpha1
 
 import (
@@ -15,7 +15,7 @@ import (
 )
 
 const (
-	Group   = "ipxer.cloud.alexandre.mahdhaoui.com"
+	Group   = "ipxer.amahdha.com"
 	Version = "v1alpha1"
 
 	UUIDPrefix      = "uuid"

@@ -168,7 +168,7 @@ func TestWebhookResolver(t *testing.T) {
 		basicAuthObject.SetName(content.WebhookConfig.BasicAuthObjectRef.Name)
 		basicAuthObject.SetNamespace(content.WebhookConfig.BasicAuthObjectRef.Namespace)
 		basicAuthObject.SetGroupVersionKind(schema.GroupVersionKind{
-			Group:   "yoursecret.alexandre.mahdhaoui.com",
+			Group:   "yoursecret.amahdha.com",
 			Version: "v1beta2",
 			Kind:    "YourSecret",
 		})

@@ -9,7 +9,7 @@ func init() {
 	SchemeBuilder.Register(&Profile{}, &ProfileList{})
 }
 
-// apiVersion: ipxe.cloud.alexandre.mahdhaoui.com/v1alpha1
+// apiVersion: ipxer.amahdha.com/v1alpha1
 // kind: Profile
 // metadata:
 //   name: your-profile
