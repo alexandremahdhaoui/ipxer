@@ -67,14 +67,14 @@ const (
 	Arm64 Buildarch = "arm64"
 )
 
-// apiVersion: ipxer.cloud.alexandre.mahdhaoui.com/v1alpha1
+// apiVersion: ipxer.amahdha.com/v1alpha1
 // kind: Assignment
 // metadata:
 //   name: your-assignment
 //   labels:
-//     ipxer.cloud.alexandre.mahdhaoui.com/buildarch: arm64
-//     uuid.ipxer.cloud.alexandre.mahdhaoui.com/c4a94672-05a1-4eda-a186-b4aa4544b146: ""
-//     uuid.ipxer.cloud.alexandre.mahdhaoui.com/3f5f3c39-584e-4c7c-b6ff-137e1aaa7175: ""
+//     ipxer.amahdha.com/buildarch: arm64
+//     uuid.ipxer.amahdha.com/c4a94672-05a1-4eda-a186-b4aa4544b146: ""
+//     uuid.ipxer.amahdha.com/3f5f3c39-584e-4c7c-b6ff-137e1aaa7175: ""
 // spec:
 //   # subjectSelectors map[string][]string
 //   # the specified labels selects subjects that can iPXE boot the selected profile below.

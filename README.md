@@ -38,7 +38,7 @@ We designed the Profile and Assignment CRDs in way that let
 ### Profile
 
 ```yaml
-apiVersion: ipxe.cloud.alexandre.mahdhaoui.com/v1alpha1
+apiVersion: ipxer.amahdha.com/v1alpha1
 kind: Profile
 metadata:
   name: your-profile
@@ -75,7 +75,7 @@ This purpose is served by the `Assignment` CRD.
 TODO: How do we avoid issues w/ conflicting subjectSelectors. Should we rank labels?
 
 ```yaml
-apiVersion: ipxe.cloud.alexandre.mahdhaoui.com/v1alpha1
+apiVersion: ipxer.amahdha.com/v1alpha1
 kind: Assignment
 metadata:
   name: your-assignment

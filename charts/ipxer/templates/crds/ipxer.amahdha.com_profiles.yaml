@@ -4,9 +4,9 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
-  name: profiles.ipxe.cloud.alexandre.mahdhaoui.com
+  name: profiles.ipxer.amahdha.com
 spec:
-  group: ipxe.cloud.alexandre.mahdhaoui.com
+  group: ipxer.amahdha.com
   names:
     kind: Profile
     listKind: ProfileList

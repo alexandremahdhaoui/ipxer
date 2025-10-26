@@ -86,7 +86,7 @@ func NewV1alpha1AdditionalContentWebhook() v1alpha1.AdditionalContent {
 			},
 			BasicAuthObjectRef: &v1alpha1.BasicAuthObjectRef{
 				ResourceRef: v1alpha1.ResourceRef{
-					Group:     "yoursecret.alexandre.mahdhaoui.com",
+					Group:     "yoursecret.amahdha.com",
 					Version:   "v1beta2",
 					Resource:  "YourSecret",
 					Namespace: "test-namespace",
@@ -178,7 +178,7 @@ func NewTypesWebhookConfig() types.WebhookConfig {
 		},
 		BasicAuthObjectRef: &types.BasicAuthObjectRef{
 			ObjectRef: types.ObjectRef{
-				Group:     "yoursecret.alexandre.mahdhaoui.com",
+				Group:     "yoursecret.amahdha.com",
 				Version:   "v1beta2",
 				Resource:  "YourSecret",
 				Namespace: "test-namespace",
