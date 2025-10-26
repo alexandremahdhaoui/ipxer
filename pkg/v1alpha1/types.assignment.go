@@ -14,15 +14,21 @@ var (
 
 	// BuildarchList Label Selector
 
-	I386BuildarchLabelSelector  = LabelSelector(I386.String(), BuildarchPrefix)
+	// I386BuildarchLabelSelector is the label selector for the i386 build architecture.
+	I386BuildarchLabelSelector = LabelSelector(I386.String(), BuildarchPrefix)
+	// X8664BuildarchLabelSelector is the label selector for the x86_64 build architecture.
 	X8664BuildarchLabelSelector = LabelSelector(X8664.String(), BuildarchPrefix)
+	// Arm32BuildarchLabelSelector is the label selector for the arm32 build architecture.
 	Arm32BuildarchLabelSelector = LabelSelector(Arm32.String(), BuildarchPrefix)
+	// Arm64BuildarchLabelSelector is the label selector for the arm64 build architecture.
 	Arm64BuildarchLabelSelector = LabelSelector(Arm64.String(), BuildarchPrefix)
 
 	// datastructures
 
+	// AllowedBuildarchList is a list of allowed build architectures.
 	AllowedBuildarchList = []Buildarch{Arm32, Arm64, I386, X8664}
-	AllowedBuildarch     = func() map[Buildarch]any {
+	// AllowedBuildarch is a map of allowed build architectures.
+	AllowedBuildarch = func() map[Buildarch]any {
 		out := make(map[Buildarch]any)
 
 		for _, b := range AllowedBuildarchList {
@@ -40,8 +46,10 @@ var (
 	}
 )
 
+// Buildarch is the build architecture of the machine.
 type Buildarch string
 
+// String returns the string representation of the Buildarch.
 func (b Buildarch) String() string {
 	return string(b)
 }
@@ -87,6 +95,7 @@ type (
 	//+kubebuilder:object:root=true
 	//+kubebuilder:subresources:status
 
+	// Assignment is the Schema for the assignments API
 	Assignment struct {
 		metav1.TypeMeta   `json:",inline"`
 		metav1.ObjectMeta `json:"metadata,omitempty"`
@@ -97,6 +106,7 @@ type (
 
 	//+kubebuilder:object:root=true
 
+	// AssignmentList contains a list of Assignment
 	AssignmentList struct {
 		metav1.TypeMeta `json:",inline"`
 		metav1.ListMeta `json:"metadata,omitempty"`
@@ -104,20 +114,29 @@ type (
 		Items []Assignment `json:"items"`
 	}
 
+	// AssignmentSpec defines the desired state of Assignment
 	AssignmentSpec struct {
+		// SubjectSelectors is a map of selectors that are used to match a machine.
 		SubjectSelectors SubjectSelectors `json:"subjectSelectors"`
-		ProfileName      string           `json:"profileName"`
-		IsDefault        bool             `json:"isDefault"`
+		// ProfileName is the name of the profile to assign to the machine.
+		ProfileName string `json:"profileName"`
+		// IsDefault is true if this assignment is the default assignment.
+		IsDefault bool `json:"isDefault"`
 	}
 
+	// AssignmentStatus defines the observed state of Assignment
 	AssignmentStatus struct{}
 
+	// SubjectSelectors is a map of selectors that are used to match a machine.
 	SubjectSelectors struct {
+		// BuildarchList is a list of build architectures to match.
 		BuildarchList []Buildarch `json:"buildarch"`
-		UUIDList      []string    `json:"uuidList"`
+		// UUIDList is a list of UUIDs to match.
+		UUIDList []string `json:"uuidList"`
 	}
 )
 
+// GetBuildarchList returns the list of build architectures for the assignment.
 func (a *Assignment) GetBuildarchList() []Buildarch {
 	out := make([]Buildarch, 0)
 
@@ -140,6 +159,7 @@ func (a *Assignment) GetBuildarchList() []Buildarch {
 	return out
 }
 
+// SetBuildarch sets the build architecture for the assignment.
 func (a *Assignment) SetBuildarch(buildarch Buildarch) {
 	a.Labels[buildarchToLabel[buildarch]] = ""
 }

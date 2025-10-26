@@ -12,6 +12,7 @@ import (
 	"github.com/alexandremahdhaoui/ipxer/pkg/constants"
 )
 
+// Serve serves the given servers and handles graceful shutdown.
 func Serve(servers map[string]*http.Server, gs *gracefulshutdown.GracefulShutdown) {
 	// 1. Run the servers.
 	for name, server := range servers {

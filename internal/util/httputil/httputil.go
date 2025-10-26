@@ -4,6 +4,7 @@ import (
 	"net/http"
 )
 
+// BasicAuth is a middleware that performs basic authentication.
 func BasicAuth(
 	next http.Handler,
 	validator func(username, password string, r *http.Request) (bool, error),

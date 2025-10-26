@@ -22,12 +22,15 @@ var ErrTransformerTransform = errors.New("transforming content")
 
 // --------------------------------------------------- INTERFACE ---------------------------------------------------- //
 
+// Transformer is an interface for transforming content.
 type Transformer interface {
+	// Transform transforms the content.
 	Transform(ctx context.Context, cfg types.TransformerConfig, content []byte, selectors types.IPXESelectors) ([]byte, error)
 }
 
 // ----------------------------------------------- BUTANE TRANSFORMER ----------------------------------------------- //
 
+// NewButaneTransformer returns a new butane transformer.
 func NewButaneTransformer() Transformer {
 	return &butaneTransformer{}
 }
@@ -50,6 +53,7 @@ func (t *butaneTransformer) Transform(
 
 // ---------------------------------------------- WEBHOOK TRANSFORMER ----------------------------------------------- //
 
+// NewWebhookTransformer returns a new webhook transformer.
 func NewWebhookTransformer(resolver ObjectRefResolver) Transformer {
 	return &webhookTransformer{objectRefResolver: resolver}
 }

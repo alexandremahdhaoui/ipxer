@@ -32,7 +32,9 @@ var (
 
 // --------------------------------------------------- INTERFACE ---------------------------------------------------- //
 
+// Resolver is an interface for resolving content.
 type Resolver interface {
+	// Resolve resolves the content.
 	Resolve(
 		ctx context.Context,
 		content types.Content,
@@ -40,9 +42,11 @@ type Resolver interface {
 	) ([]byte, error)
 }
 
+// ObjectRefResolver is an interface for resolving object references.
 type ObjectRefResolver interface {
 	Resolver
 
+	// ResolvePaths resolves the paths in the object reference.
 	ResolvePaths(
 		ctx context.Context,
 		paths []*jsonpath.JSONPath,
@@ -52,6 +56,7 @@ type ObjectRefResolver interface {
 
 // ------------------------------------------------- INLINE RESOLVER ------------------------------------------------ //
 
+// NewInlineResolver returns a new inline resolver.
 func NewInlineResolver() Resolver {
 	return &inlineResolver{}
 }
@@ -68,6 +73,7 @@ func (r *inlineResolver) Resolve(
 
 // ---------------------------------------------- OBJECT REF RESOLVER ----------------------------------------------- //
 
+// NewObjectRefResolver returns a new object ref resolver.
 func NewObjectRefResolver(k8sClient dynamic.Interface) ObjectRefResolver {
 	return &objectRefResolver{k8s: k8sClient}
 }
@@ -137,7 +143,8 @@ const (
 	uuidParam      = "uuid"
 )
 
-// NewWebhookResolver requires a k8sClient in order to resolve object reference if needed.
+// NewWebhookResolver returns a new webhook resolver.
+// It requires a k8sClient in order to resolve object reference if needed.
 func NewWebhookResolver(resolver ObjectRefResolver) Resolver {
 	return &webhookResolver{objectRefResolver: resolver}
 }

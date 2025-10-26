@@ -16,12 +16,14 @@ import (
 
 // ------------------------------------------------------- CA ------------------------------------------------------- //
 
+// CA is a certificate authority.
 type CA struct {
 	key      *ecdsa.PrivateKey
 	pool     *x509.CertPool
 	rootCert *x509.Certificate
 }
 
+// NewCA creates a new CA.
 func NewCA() (*CA, error) {
 	// 1. create a ca cert.
 	caCert := &x509.Certificate{
@@ -68,16 +70,19 @@ func NewCA() (*CA, error) {
 	}, nil
 }
 
+// Pool returns the CA's cert pool.
 func (ca *CA) Pool() *x509.CertPool {
 	return ca.pool
 }
 
+// Cert returns the CA's root certificate in PEM format.
 func (ca *CA) Cert() []byte {
 	return certToPEM(ca.rootCert)
 }
 
 // ------------------------------------------------ CertifiedKeypair ------------------------------------------------ //
 
+// NewCertifiedKey creates a new certified key.
 func (ca *CA) NewCertifiedKey(domains ...string) (*ecdsa.PrivateKey, *x509.Certificate, error) {
 	crtTemplate := &x509.Certificate{
 		Subject: pkix.Name{
@@ -110,6 +115,7 @@ func (ca *CA) NewCertifiedKey(domains ...string) (*ecdsa.PrivateKey, *x509.Certi
 	return key, signed, nil
 }
 
+// NewCertifiedKeyPEM creates a new certified key in PEM format.
 func (ca *CA) NewCertifiedKeyPEM(domains ...string) (key []byte, cert []byte, err error) {
 	k, c, err := ca.NewCertifiedKey(domains...)
 	if err != nil {

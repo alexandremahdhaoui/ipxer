@@ -10,6 +10,7 @@ import (
 
 type validatingFunc = func(ctx context.Context, obj runtime.Object) error
 
+// NewUnsupportedResource returns a new error for an unsupported resource.
 func NewUnsupportedResource(obj runtime.Object, errs ...error) error {
 	return errors.Join(
 		errors.Join(errs...),

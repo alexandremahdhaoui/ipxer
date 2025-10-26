@@ -21,13 +21,17 @@ var (
 
 // --------------------------------------------------- INTERFACES --------------------------------------------------- //
 
+// Assignment is an interface for finding assignments.
 type Assignment interface {
+	// FindDefaultByBuildarch finds the default assignment for a given build architecture.
 	FindDefaultByBuildarch(ctx context.Context, buildarch string) (types.Assignment, error)
+	// FindBySelectors finds an assignment by a given set of selectors.
 	FindBySelectors(ctx context.Context, selectors types.IPXESelectors) (types.Assignment, error)
 }
 
 // --------------------------------------------------- CONSTRUCTORS ------------------------------------------------- //
 
+// NewAssignment returns a new Assignment.
 func NewAssignment(c client.Client, namespace string) Assignment {
 	return &assignment{
 		client:    c,

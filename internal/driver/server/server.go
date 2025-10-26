@@ -14,6 +14,7 @@ var (
 	ErrGetIPXEBySelectors = errors.New("getting ipxe by labels")
 )
 
+// New returns a new server.
 func New(ipxe controller.IPXE, config controller.Content) ipxerserver.StrictServerInterface {
 	return &server{
 		ipxe:   ipxe,
