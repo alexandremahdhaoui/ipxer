@@ -18,7 +18,9 @@ var (
 
 // ---------------------------------------------------- INTERFACE --------------------------------------------------- //
 
+// Content is an interface for getting content.
 type Content interface {
+	// GetByID gets content by ID.
 	GetByID(
 		ctx context.Context,
 		contentID uuid.UUID,
@@ -28,6 +30,7 @@ type Content interface {
 
 // --------------------------------------------------- CONSTRUCTORS ------------------------------------------------- //
 
+// NewContent returns a new Content.
 func NewContent(profile adapter.Profile, mux ResolveTransformerMux) Content {
 	return &content{
 		profile: profile,

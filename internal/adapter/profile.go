@@ -32,13 +32,17 @@ var (
 
 // --------------------------------------------------- INTERFACES --------------------------------------------------- //
 
+// Profile is an interface for getting profiles.
 type Profile interface {
+	// Get gets a profile by name.
 	Get(ctx context.Context, name string) (types.Profile, error)
+	// ListByContentID lists profiles by content ID.
 	ListByContentID(ctx context.Context, configID uuid.UUID) ([]types.Profile, error)
 }
 
 // --------------------------------------------------- CONSTRUCTORS ------------------------------------------------- //
 
+// NewProfile returns a new Profile.
 func NewProfile(c client.Client, namespace string) Profile {
 	return &v1a1Profile{
 		client:    c,

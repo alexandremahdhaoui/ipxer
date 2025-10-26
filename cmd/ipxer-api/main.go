@@ -41,31 +41,45 @@ var (
 	BuildTimestamp = "n/a" //nolint:gochecknoglobals // set by ldflags
 )
 
+// Config is used to configure the application.
+//
+// Some part of the configuration may be passed through environment variables.
 type Config struct {
 	// Adapters
 
+	// AssignmentNamespace is the namespace where the Assignment resources are located.
 	AssignmentNamespace string `json:"assignmentNamespace"`
-	ProfileNamespace    string `json:"profileNamespace"`
+	// ProfileNamespace is the namespace where the Profile resources are located.
+	ProfileNamespace string `json:"profileNamespace"`
 
 	// Kubeconfig
 
+	// KubeconfigPath is the path to the kubeconfig file.
+	//
+	// It can be set to "in-cluster" to use the in-cluster config.
 	KubeconfigPath string `json:"kubeconfigPath"`
 
-	// ProbesServer
+	// ProbesServer is the configuration for the probes server.
 	ProbesServer struct {
-		LivenessPath  string `json:"livenessPath"`
+		// LivenessPath is the path for the liveness probe.
+		LivenessPath string `json:"livenessPath"`
+		// ReadinessPath is the path for the readiness probe.
 		ReadinessPath string `json:"readinessPath"`
-		Port          int    `json:"port"`
+		// Port is the port for the probes server.
+		Port int `json:"port"`
 	} `json:"probesServer"`
 
-	// MetricsServer
+	// MetricsServer is the configuration for the metrics server.
 	MetricsServer struct {
+		// Path is the path for the metrics server.
 		Path string `json:"path"`
-		Port int    `json:"port"`
+		// Port is the port for the metrics server.
+		Port int `json:"port"`
 	} `json:"metricsServer"`
 
-	// APIServer
+	// APIServer is the configuration for the API server.
 	APIServer struct {
+		// Port is the port for the API server.
 		Port int `json:"port"`
 	} `json:"apiServer"`
 }

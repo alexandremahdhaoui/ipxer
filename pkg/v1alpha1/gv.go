@@ -28,6 +28,10 @@ var (
 	AddToScheme   = SchemeBuilder.AddToScheme
 )
 
+// LabelSelector returns a label selector for the given key and prefixes.
+//
+// The label selector is in the format: `<prefix>.<prefix>...<group>/<key>`.
+// If no prefixes are provided, the format is: `<group>/<key>`.
 func LabelSelector(key string, prefixes ...string) string {
 	label := fmt.Sprintf("%s/%s", Group, key)
 
@@ -38,22 +42,27 @@ func LabelSelector(key string, prefixes ...string) string {
 	return label
 }
 
+// NewUUIDLabelSelector returns a new UUID label selector.
 func NewUUIDLabelSelector(id uuid.UUID) string {
 	return LabelSelector(id.String(), UUIDPrefix)
 }
 
+// SetUUIDLabelSelector sets a UUID label selector on a client.Object.
 func SetUUIDLabelSelector(obj client.Object, id uuid.UUID, value string) {
 	obj.GetLabels()[NewUUIDLabelSelector(id)] = value
 }
 
+// IsUUIDLabelSelector returns true if the given key is a UUID label selector.
 func IsUUIDLabelSelector(key string) bool {
 	return strings.Contains(key, LabelSelector("", UUIDPrefix))
 }
 
+// IsInternalLabel returns true if the given key is an internal label.
 func IsInternalLabel(key string) bool {
 	return strings.Contains(key, Group)
 }
 
+// UUIDLabelSelectors returns a map of UUIDs to names and a reverse map of names to UUIDs.
 func UUIDLabelSelectors(labels map[string]string) (idNameMap map[uuid.UUID]string, reverse map[string]uuid.UUID, err error) {
 	idNameMap = make(map[uuid.UUID]string)
 	reverse = make(map[string]uuid.UUID)

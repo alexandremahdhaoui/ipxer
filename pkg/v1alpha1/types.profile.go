@@ -50,6 +50,7 @@ func init() {
 //+kubebuilder:object:root=true
 //+kubebuilder:subresources:status
 
+// Profile is the Schema for the profiles API
 type Profile struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
@@ -58,17 +59,21 @@ type Profile struct {
 	Status ProfileStatus `json:"status,omitempty"`
 }
 
+// ProfileSpec defines the desired state of Profile
 type ProfileSpec struct {
+	// IPXETemplate is the iPXE script template.
 	IPXETemplate string `json:"ipxeTemplate"`
 
 	// AdditionalContent can be templated into the IPXETemplate using the content's key.
 	AdditionalContent []AdditionalContent `json:"additionalContent,omitempty"`
 }
 
+// ProfileStatus defines the observed state of Profile
 type ProfileStatus struct{}
 
 //+kubebuilder:object:root=true
 
+// ProfileList contains a list of Profile
 type ProfileList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
@@ -77,6 +82,7 @@ type ProfileList struct {
 }
 
 type (
+	// AdditionalContent is a piece of content that can be templated into the IPXETemplate.
 	AdditionalContent struct {
 		// Name of this additional content.
 		Name string `json:"name"`
@@ -102,6 +108,7 @@ type (
 		Webhook *WebhookConfig `json:"webhook,omitempty"`
 	}
 
+	// Transformer is a transformation that can be applied to a piece of content.
 	Transformer struct {
 		// ButaneToIgnition transforms a butane yaml document into a proper ignition one.
 		ButaneToIgnition bool `json:"butaneToIgnition"`
@@ -110,6 +117,7 @@ type (
 		Webhook *WebhookConfig `json:"webhook,omitempty"`
 	}
 
+	// ObjectRef is a reference to an object.
 	ObjectRef struct {
 		ResourceRef `json:",inline"`
 
@@ -118,13 +126,18 @@ type (
 		JSONPath string `json:"jsonpath"`
 	}
 
+	// WebhookConfig is the configuration for a webhook.
 	WebhookConfig struct {
+		// URL is the URL of the webhook.
 		URL string `json:"url"`
 
-		MTLSObjectRef      *MTLSObjectRef      `json:"mTLSRef,omitempty"`
+		// MTLSObjectRef is a reference to a secret containing the mTLS configuration.
+		MTLSObjectRef *MTLSObjectRef `json:"mTLSRef,omitempty"`
+		// BasicAuthObjectRef is a reference to a secret containing the basic auth configuration.
 		BasicAuthObjectRef *BasicAuthObjectRef `json:"basicAuthRef,omitempty"`
 	}
 
+	// BasicAuthObjectRef is a reference to a secret containing the basic auth configuration.
 	BasicAuthObjectRef struct {
 		ResourceRef `json:",inline"`
 
@@ -135,6 +148,7 @@ type (
 		PasswordJSONPath string `json:"passwordJSONPath"`
 	}
 
+	// MTLSObjectRef is a reference to a secret containing the mTLS configuration.
 	MTLSObjectRef struct {
 		ResourceRef `json:",inline"`
 

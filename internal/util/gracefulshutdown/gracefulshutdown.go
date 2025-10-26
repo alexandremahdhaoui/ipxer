@@ -10,6 +10,8 @@ import (
 	"syscall"
 )
 
+// GracefulShutdown is a struct that holds the context, cancel function, name, mutex, and wait group for a graceful
+// shutdown.
 type GracefulShutdown struct {
 	ctx    context.Context
 	cancel context.CancelFunc
@@ -45,6 +47,7 @@ func New(name string) *GracefulShutdown {
 	return gs
 }
 
+// Shutdown shuts down the application gracefully.
 func (s *GracefulShutdown) Shutdown(exitCode int) {
 	// 1. Try to lock the GracefulShutdown struct. This oneliner ensures Shutdown is idempotent.
 	if !s.mu.TryLock() {
@@ -66,14 +69,17 @@ func (s *GracefulShutdown) Shutdown(exitCode int) {
 	os.Exit(exitCode)
 }
 
+// Context returns the context of the graceful shutdown.
 func (s *GracefulShutdown) Context() context.Context {
 	return s.ctx
 }
 
+// CancelFunc returns the cancel function of the graceful shutdown.
 func (s *GracefulShutdown) CancelFunc() context.CancelFunc {
 	return s.cancel
 }
 
+// WaitGroup returns the wait group of the graceful shutdown.
 func (s *GracefulShutdown) WaitGroup() *sync.WaitGroup {
 	return s.wg
 }

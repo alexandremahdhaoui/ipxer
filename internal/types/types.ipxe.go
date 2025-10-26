@@ -84,76 +84,128 @@ const (
 
 // --- PARAMS --- //
 
+// IpxeParams is a struct that holds all the possible iPXE parameters.
 type IpxeParams struct {
-	Mac        *hexa   //	MAC address
-	BusType    *string // Bus type
-	BusLoc     *uint32 // Bus location
-	BusID      *hexa   // Bus ExposedConfigID
-	Chip       *string // Chip type
-	Ssid       *string // Wireless SSID
-	ActiveScan *int8   // Actively scan for wireless orks
-	Key        *string // Wireless encryption key
+	// Mac is the MAC address of the network interface.
+	Mac *hexa //	MAC address
+	// BusType is the bus type of the network interface.
+	BusType *string // Bus type
+	// BusLoc is the bus location of the network interface.
+	BusLoc *uint32 // Bus location
+	// BusID is the bus ID of the network interface.
+	BusID *hexa // Bus ExposedConfigID
+	// Chip is the chip type of the network interface.
+	Chip *string // Chip type
+	// Ssid is the wireless SSID.
+	Ssid *string // Wireless SSID
+	// ActiveScan is whether to actively scan for wireless networks.
+	ActiveScan *int8 // Actively scan for wireless orks
+	// Key is the wireless encryption key.
+	Key *string // Wireless encryption key
 
 	// IPv4 settings
 
-	Ip      *net.IP // IP address
+	// Ip is the IP address of the network interface.
+	Ip *net.IP // IP address
+	// Netmask is the netmask of the network interface.
 	Netmask *net.IP // Subnet mask
+	// Gateway is the gateway of the network interface.
 	Gateway *net.IP // Default gateway
-	Dns     *net.IP // DNS server
-	Domain  *string // DNS domain
+	// Dns is the DNS server of the network interface.
+	Dns *net.IP // DNS server
+	// Domain is the domain of the network interface.
+	Domain *string // DNS domain
 
 	// Boot settings
 
-	Filename     *string // Boot filename
-	NextServer   *net.IP // TFTP server
-	RootPath     *string // SAN root path
-	SanFilename  *string // SAN filename
+	// Filename is the boot filename.
+	Filename *string // Boot filename
+	// NextServer is the next server.
+	NextServer *net.IP // TFTP server
+	// RootPath is the root path.
+	RootPath *string // SAN root path
+	// SanFilename is the SAN filename.
+	SanFilename *string // SAN filename
+	// InitiatorIqn is the initiator IQN.
 	InitiatorIqn *string // iSCSI initiator name
-	KeepSan      *int8   // Preserve SAN connection
-	SkipSanBoot  *int8   // Do not boot from SAN device
+	// KeepSan is whether to keep the SAN.
+	KeepSan *int8 // Preserve SAN connection
+	// SkipSanBoot is whether to skip the SAN boot.
+	SkipSanBoot *int8 // Do not boot from SAN device
 
 	// Host settings
 
-	Hostname     *string    // Host name
-	UUID         *uuid.UUID // UUID
-	UserClass    *string    // DHCP user class
-	Manufacturer *string    // Manufacturer
-	Product      *string    // Product name
-	Serial       *string    // Serial number
-	Asset        *string    // Asset tag
+	// Hostname is the hostname of the machine.
+	Hostname *string // Host name
+	// UUID is the UUID of the machine.
+	UUID *uuid.UUID // UUID
+	// UserClass is the user class of the machine.
+	UserClass *string // DHCP user class
+	// Manufacturer is the manufacturer of the machine.
+	Manufacturer *string // Manufacturer
+	// Product is the product of the machine.
+	Product *string // Product name
+	// Serial is the serial number of the machine.
+	Serial *string // Serial number
+	// Asset is the asset tag of the machine.
+	Asset *string // Asset tag
 
 	// Authentication settings
 
-	Username        *string // User name
-	Password        *string // Password
+	// Username is the username for authentication.
+	Username *string // User name
+	// Password is the password for authentication.
+	Password *string // Password
+	// ReverseUsername is the reverse username for authentication.
 	ReverseUsername *string // Reverse user name
+	// ReversePassword is the reverse password for authentication.
 	ReversePassword *string // Reverse password
 
 	// Cryptography settings
 
+	// Crosscert is the cross-signed certificate.
 	Crosscert *string // Cross-signed certificate source
-	Trust     *hexa   // Trusted root certificate fingerprints
-	Cert      *hexa   // Client certificate
-	Privkey   *hexa   // Client private key
+	// Trust is the trusted certificate.
+	Trust *hexa // Trusted root certificate fingerprints
+	// Cert is the certificate.
+	Cert *hexa // Client certificate
+	// Privkey is the private key.
+	Privkey *hexa // Client private key
 
 	// Miscellaneous settings
 
-	Buildarch  *string // Build architecture
-	Cpumodel   *string // CPU model
-	Cpuvendor  *string // CPU vendor
+	// Buildarch is the build architecture of the machine.
+	Buildarch *string // Build architecture
+	// Cpumodel is the CPU model of the machine.
+	Cpumodel *string // CPU model
+	// Cpuvendor is the CPU vendor of the machine.
+	Cpuvendor *string // CPU vendor
+	// DhcpServer is the DHCP server.
 	DhcpServer *net.IP // DHCP server
-	Keymap     *string // Keyboard layout
-	Memsize    *int32  // Memory size
-	Platform   *string // Firmware platform
-	Priority   *int8   // Settings priority
-	Scriptlet  *string // Boot scriptlet
-	Syslog     *net.IP // Syslog server
-	Syslogs    *string // Encrypted syslog server
-	Sysmac     *hexa   // System MAC address
-	Unixtime   *uint32 // Seconds since the Epoch
-	UseCached  *uint8  // Use cached settings
-	Version    *string // iPXE version
-	Vram       *[]byte // Video RAM contents
+	// Keymap is the keymap of the machine.
+	Keymap *string // Keyboard layout
+	// Memsize is the memory size of the machine.
+	Memsize *int32 // Memory size
+	// Platform is the platform of the machine.
+	Platform *string // Firmware platform
+	// Priority is the priority of the machine.
+	Priority *int8 // Settings priority
+	// Scriptlet is the scriptlet.
+	Scriptlet *string // Boot scriptlet
+	// Syslog is the syslog server.
+	Syslog *net.IP // Syslog server
+	// Syslogs is the syslogs server.
+	Syslogs *string // Encrypted syslog server
+	// Sysmac is the system MAC address.
+	Sysmac *hexa // System MAC address
+	// Unixtime is the unixtime.
+	Unixtime *uint32 // Seconds since the Epoch
+	// UseCached is whether to use cached settings.
+	UseCached *uint8 // Use cached settings
+	// Version is the version of iPXE.
+	Version *string // iPXE version
+	// Vram is the VRAM of the machine.
+	Vram *[]byte // Video RAM contents
 }
 
 type hexa []byte
@@ -176,7 +228,10 @@ func (b *hexa) UnmarshalText(text []byte) error {
 
 // ------------------------------------------------ LABEL SELECTORS ------------------------------------------------- //
 
+// IPXESelectors is a struct that holds the selectors for an iPXE boot.
 type IPXESelectors struct {
+	// Buildarch is the build architecture of the machine.
 	Buildarch string
-	UUID      uuid.UUID
+	// UUID is the UUID of the machine.
+	UUID uuid.UUID
 }

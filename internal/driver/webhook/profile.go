@@ -23,6 +23,7 @@ var (
 	contentNameRegex = regexp.MustCompile("")
 )
 
+// NewProfile returns a new Profile webhook.
 func NewProfile() *Profile {
 	return &Profile{}
 }

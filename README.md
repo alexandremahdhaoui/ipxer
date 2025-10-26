@@ -4,6 +4,24 @@ IPXER leverages Kubernetes to assign and expose fine-grained server configuratio
 
 [This document](./.todo.yaml) lists tasks to be done.
 
+## Table of Contents
+
+- [ipxer](#ipxer)
+  - [Table of Contents](#table-of-contents)
+  - [iPXE booting workflow](#ipxe-booting-workflow)
+  - [Custom Resource Definitions](#custom-resource-definitions)
+    - [Profile](#profile)
+    - [Assignment](#assignment)
+  - [Architecture](#architecture)
+      - [Storage](#storage)
+  - [Deployment](#deployment)
+  - [Development](#development)
+    - [Testing ipxer](#testing-ipxer)
+      - [Running the binary in the reproducible test environment](#running-the-binary-in-the-reproducible-test-environment)
+  - [Next features](#next-features)
+  - [Acknowledgement](#acknowledgement)
+  - [See Also](#see-also)
+
 ## iPXE booting workflow
 
 | Phase             | Action                          | Description                                                                                                                                       |
@@ -126,3 +144,10 @@ go run ./cmd/ipxer-api
 ## Acknowledgement
 
 This project was inspired by [poseidon/matchbox](https://github.com/poseidon/matchbox).
+
+## See Also
+
+- [ipxer-api](./cmd/ipxer-api/README.md)
+- [ipxer-controller](./cmd/ipxer-controller/README.md)
+- [ipxer-tftp](./cmd/ipxer-tftp/README.md)
+- [ipxer-webhook](./cmd/ipxer-webhook/README.md)

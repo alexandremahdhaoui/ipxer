@@ -20,6 +20,7 @@ var (
 	_ webhook.CustomDefaulter = &Assignment{}
 )
 
+// NewAssignment returns a new Assignment webhook.
 func NewAssignment(assignment adapter.Assignment, profile adapter.Profile) *Assignment {
 	return &Assignment{
 		assignment: assignment,

@@ -23,9 +23,12 @@ var (
 
 // ---------------------------------------------------- INTERFACES -------------------------------------------------- //
 
+// ResolveTransformerMux is an interface for resolving and transforming content.
 type ResolveTransformerMux interface {
+	// ResolveAndTransform resolves and transforms content.
 	ResolveAndTransform(ctx context.Context, content types.Content, selectors types.IPXESelectors) ([]byte, error)
 
+	// ResolveAndTransformBatch resolves and transforms a batch of content.
 	ResolveAndTransformBatch(
 		ctx context.Context,
 		batch map[string]types.Content,
@@ -36,6 +39,7 @@ type ResolveTransformerMux interface {
 
 // --------------------------------------------------- CONSTRUCTORS ------------------------------------------------- //
 
+// NewResolveTransformerMux returns a new ResolveTransformerMux.
 func NewResolveTransformerMux(
 	ipxerBaseURL string,
 	resolvers map[types.ResolverKind]adapter.Resolver,
@@ -124,10 +128,12 @@ func (r *resolveTransformerMux) ResolveAndTransformBatch(
 }
 
 type (
+	// ResolveTransformBatchOptions contains options for resolving and transforming a batch of content.
 	ResolveTransformBatchOptions struct {
 		returnURLInsteadOfResolveAndTransform bool
 	}
 
+	// ResolveTransformBatchOption is a function that sets an option for resolving and transforming a batch of content.
 	ResolveTransformBatchOption func(options *ResolveTransformBatchOptions)
 )
 
@@ -141,6 +147,6 @@ func (o *ResolveTransformBatchOptions) apply(options ...ResolveTransformBatchOpt
 
 // ReturnExposedContentURL will ensure resolvetransformermux.ResolveAndTransformBatch does not resolve and transform the
 // content but return a URL to that content.
-func ReturnExposedContentURL(options *ResolveTransformBatchOptions) {
+func ReturnExposedContentURL(options *ResolveTransformBatchOptions) { //nolint:revive
 	options.returnURLInsteadOfResolveAndTransform = true
 }

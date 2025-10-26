@@ -23,13 +23,17 @@ var (
 
 // ---------------------------------------------------- INTERFACES -------------------------------------------------- //
 
+// IPXE is an interface for finding and rendering iPXE profiles.
 type IPXE interface {
+	// FindProfileAndRender finds a profile and renders it.
 	FindProfileAndRender(ctx context.Context, selectors types.IPXESelectors) ([]byte, error)
+	// Boostrap returns the iPXE bootstrap script.
 	Boostrap() []byte
 }
 
 // --------------------------------------------------- CONSTRUCTORS ------------------------------------------------- //
 
+// NewIPXE returns a new IPXE.
 func NewIPXE(
 	assignment adapter.Assignment,
 	profile adapter.Profile,
